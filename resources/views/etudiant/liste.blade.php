@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
+    <title>CRUD</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-4bw+/aepP/YC94hEpVNVgiZdgIC5+VKNBQNGCHeKRQN+PtmoHDEXuppvnDJzQIu9" crossorigin="anonymous">
   </head>
   <body>
@@ -12,8 +12,13 @@
           <div class="col s-12">
             <h1>Liste Etudiants</h1>
             <hr>
-            <a href="/ajouter" class="btn btn-outline-primary">Ajouter</a>
+            <a href="/ajouter" class="btn btn-outline-primary px-5 py-2">Ajouter</a>
             <hr>
+            @if (session('status'))
+              <div class="alert alert-success">
+                {{ (session('status')) }}
+              </div>
+            @endif
             <table class="table text-center">
                 <thead>
                   <tr>
@@ -25,16 +30,18 @@
                   </tr>
                 </thead>
                 <tbody>
+                  @foreach ($etudiants as $etudiant)
                   <tr>
-                    <td>1</td>
-                    <td>Nom</td>
-                    <td>Prénom</td>
-                    <td>Sixième</td>
+                    <td>{{ $etudiant->id }}</td>
+                    <td>{{ $etudiant->nom }}</td>
+                    <td>{{ $etudiant->prenom }}</td>
+                    <td>{{ $etudiant->classe }}</td>
                     <td>
-                        <a href="/modifier" class="btn btn-outline-warning">Modifier</a>
-                        <a href="/supprimer" class="btn btn-outline-danger">Supprimer</a>
+                        <a href="/modifier/{{ $etudiant->id }}" class="btn btn-outline-warning">Modifier</a>
+                        <a href="/supprimer/{{ $etudiant->id }}" class="btn btn-outline-danger">Supprimer</a>
                     </td>
                   </tr>
+                  @endforeach
                 </tbody>
               </table>
           </div>

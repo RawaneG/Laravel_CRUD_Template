@@ -16,5 +16,7 @@ use App\Http\Controllers\EtudiantController;
 
 Route::get("/", [EtudiantController::class, "liste_etudiant"]);
 Route::get("/ajouter", [EtudiantController::class, "ajout_etudiant"]);
-Route::get("/modifier", [EtudiantController::class, "modification_etudiant"]);
-Route::get("/supprimer", [EtudiantController::class, "suppression_etudiant"]);
+Route::get("/supprimer/{id}", [EtudiantController::class, "supprimer_etudiant"]);
+Route::post("/ajouter/traitement", [EtudiantController::class, "creer_etudiant"]);
+Route::get("/modifier/{id}", [EtudiantController::class, "modification_etudiant"]);
+Route::post("/modifier/traitement", [EtudiantController::class, "modifier_etudiant"]);
